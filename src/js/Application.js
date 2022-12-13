@@ -3,7 +3,7 @@ import EventEmitter from "eventemitter3";
 export default class Application extends EventEmitter {
   static get events() {
     return {
-      READY: "ready",
+      READY: "ready"
     };
   }
 
@@ -15,7 +15,24 @@ export default class Application extends EventEmitter {
   }
   setEmojis(emojis) {
     this.emojis = emojis;
+    const div = document.querySelector("#emojis");
+    this.emojis.forEach((elem) => {
+      let p = document.createElement("p");
+      p.textContent = elem;
+      div.appendChild(p);
+    });
   }
 
-  addBananas() {}
+  addBananas() {
+    document.querySelector('#emojis').replaceChildren();
+    this.emojis.map(elem=>{
+      return elem+=this.banana;
+    })
+    const div = document.querySelector("#emojis");
+    this.emojis.forEach((elem) => {
+      let p = document.createElement("p");
+      p.textContent = elem;
+      div.appendChild(p);
+    });
+  }
 }
